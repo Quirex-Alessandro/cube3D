@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 // require("dotenv").config();
-const serverPort = process.env.PORT || 8000;
+const serverPort = process.env.PORT || 8080;
 const server = http.createServer(app);
 const WebSocket = require("ws");
 let keepAliveId;
