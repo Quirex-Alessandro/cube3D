@@ -1,4 +1,4 @@
-let ws = new WebSocket("wss://localhost:5001");
+let ws = new WebSocket("wss://localhost:8080");
 let controlledByTD = document.querySelector(".controlledByTD");
 let controlledByTD2 = document.querySelector(".controlledByTD2");
 let controlledByTD3 = document.querySelector(".controlledByTD3");
