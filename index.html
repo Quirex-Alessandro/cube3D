@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cube3D</title>
+		<link rel="stylesheet" type="text/css" href="style2.css" />
+	</head>
+	<body>
+		<div class="slidercontainer">
+			<input type="range" id="rotationSlider" min="0" max="360" value="0" class="controlledByTD" />
+		</div>
+		<div class="slidercontainer2">
+			<input type="range" id="rotationSlider2" min="0" max="360" value="0" class="controlledByTD2" />
+		</div>
+		<div class="slidercontainer3">
+			<input type="range" id="rotationSlider3" min="0" max="360" value="0" class="controlledByTD3" />
+		</div>
+		<div class="scene">
+			<div class="cube">
+				<div class="face front"><div class="grid"></div></div>
+				<div class="face back"><div class="grid"></div></div>
+				<div class="face left"><div class="grid"></div></div>
+				<div class="face right"><div class="grid"></div></div>
+				<div class="face top"><div class="grid"></div></div>
+				<div class="face bottom"><div class="grid"></div></div>
+			</div>
+		</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				let grids = document.querySelectorAll(".grid");
+				grids.forEach((grid) => {
+					for (let i = 0; i < 100; i++) {
+						let span = document.createElement("span");
+						grid.appendChild(span);
+					}
+				});
+				//Add random active class
+				function addRandomActiveClass() {
+					grids.forEach((grid) => {
+						let spans = grid.querySelectorAll("span");
+						let randomIndex = Math.floor(Math.random() * spans.length);
+						spans[randomIndex].classList.add("active");
+						//Remove active class after a random Time
+						let removeTime = Math.floor(Math.random() * 500) + 250;
+						setTimeout(() => {
+							spans[randomIndex].classList.remove("active");
+						}, removeTime);
+					});
+				}
+				// call addRandomActiveClass function at random interval
+				function randomInterval() {
+					let interval = Math.floor(Math.random() * 200) + 100;
+					addRandomActiveClass();
+					setTimeout(randomInterval, interval);
+				}
+				randomInterval();
+			});
+			document.getElementById("rotationSlider").addEventListener("input", (event) => {
+				const angle = event.target.value;
+				const cube = document.querySelector(".cube");
+				if (angle === undefined) {
+					console.log("angle is undefined", event.target);
+					return;
+				}
+				const rotate = `rotateY(${angle}deg) rotateZ(${angle}deg)`;
+				cube.style.transform = rotate;
+			});
+			document.getElementById("rotationSlider2").addEventListener("input2", (event) => {
+				const angle = event.target.value;
+				const cube = document.querySelector(".cube");
+				if (angle === undefined) {
+					console.log("angle is undefined", event.target);
+					return;
+				}
+				const rotate = `rotateX(${angle * 2}deg)  rotateY(${angle * 2}deg)`;
+				cube.style.transform = rotate;
+			});
+			document.getElementById("rotationSlider3").addEventListener("input3", (event) => {
+				const angle = event.target.value;
+				const cube = document.querySelector(".cube");
+				if (angle === undefined) {
+					console.log("angle is undefined", event.target);
+					return;
+				}
+				const rotate = `rotateY(${-angle}deg) rotateZ(${-angle}deg)`;
+				cube.style.transform = rotate;
+			});
+		</script>
+		<script src="script2.js"></script>
+	</body>
+</html>
