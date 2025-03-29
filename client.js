@@ -1,13 +1,13 @@
-const http = require("https");
+const http = require("http");
 const express = require("express");
 const app = express();
 app.use(express.static("public"));
 // require("dotenv").config();
-const serverPort = process.env.PORT || 8080;
+const serverPort = process.env.PORT || 8000;
 const server = http.createServer(app);
 const WebSocket = require("ws");
 let keepAliveId;
-const wss = process.env.NODE_ENV === "production" ? new WebSocket.Server({ server }) : new WebSocket.Server({ port: 8080 });
+const wss = process.env.NODE_ENV === "production" ? new WebSocket.Server({ server }) : new WebSocket.Server({ port: 5001 });
 server.listen(serverPort);
 console.log(`Server started on port ${serverPort} in stage ${process.env.NODE_ENV}`);
 wss.on("connection", function (ws, req) {
